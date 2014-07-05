@@ -1,0 +1,5 @@
+PORTAL
+  -->(http) Connector -> GuestsHandler -> GuestObject (write to unix domain socket)
+    -->(unix domain socket) Guest (Load GuestControl Library) CtrlXXXX -> VMCtrlXXXX -> Call VRDP Server
+      -->(VRDP) VRDP (Load Extension Library) -> VRDE XXXX -> Call ProtocolHandler
+        -->(nsp2) Send SyncConfig Instruction To ALL ITS CLIENTS

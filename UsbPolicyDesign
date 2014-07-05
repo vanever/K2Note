@@ -1,0 +1,80 @@
+USB POLICY
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+1. FolderUsbPolicy
+	-- Api
+    -- NewUsbPolicy
+    -- GetUsbPolicies (return ALL available USB policy list for dropdown List)
+    -- GetSearchProperties (? do we really need to index the USB Policy)
+    -- Search
+
+	-- View
+
+  -- obj
+
+2. UsbPolicy
+
+	-- Api
+    -- AddRule
+
+	-- View
+    --
+
+  -- obj
+    -- Description
+    -- priority: include-first / exclude-first
+    -- FolderUsbPolicyRule
+
+3. FolderUsbPolicy
+  -- always contains a DEFAULT policy
+
+4. UsbPolicyRule
+
+  -- Api
+    -- SetUsbFamily ($family, $subFamily = null)
+    -- SetVendorAndProductId ($vid, $pid)
+    -- SetSpecificUsb ($usb)  // select from usb record list
+
+  -- Obj
+    -- filterType: include/exclude
+    -- classId: 
+    -- subClassId:
+    -- vendorId:
+    -- productId:
+
+5. FolderUsbRecord
+  -- Api
+    -- NewUsbRecord
+    -- GetUsbRecordList
+    -- DeleteUsbRecord($record)
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+SCENARIO
+
+$. CRUD of USB policy
+$. machine apply a new usb policy
+
+$. modifing policy needs to notify ALL machines who used this policy
+  -- how to know how many machine have used this policy, maintain A MAP?, using INDEX
+  -- if index not work, using loop search, OR custom the DB query ?
+  -- what if the machine is saved, the new policy should take effects when it is started, same as other config
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+QUESTION
+
+do we need the passthrough? 
+When the client has detected a USB, it send the USB info to server and server check the USB policy,
+then directly let client accept it without user's interfere (i.e. user do not need to click something)
+
+currently we don't have passthrough?
+passthrough seems only
+
+USB POLICY USED FOR:
+let admin forbid what they don't want
+OR passthrough
